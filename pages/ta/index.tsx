@@ -7,7 +7,6 @@ import Loader from "../../components/Loader";
 import { auth } from "../../lib/firebase";
 
 export default function TAHome(props) {
-    
     console.log("At TA Home");
 
     const queue = useQueue();
@@ -26,9 +25,9 @@ export default function TAHome(props) {
             if (a.position !== 0 && b.position !== 0) {
                 return a.position - b.position;
             } else if (a.position === 0) {
-                return 1000; // force zeroes to be placed last
+                return Infinity; // force zeroes to be placed last
             } else if (b.position === 0) {
-                return -1000;
+                return -Infinity;
             }
         });
         const queueList = queue.map(displayQueueData);
@@ -42,8 +41,7 @@ export default function TAHome(props) {
     } else {
         return (
             <div>
-                {" "}
-                <Loader />{" "}
+                <Loader />
             </div>
         );
     }
